@@ -30,6 +30,12 @@ class App extends Component {
     })
   }
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      padding: '8px',
+      border: '1px solid blue'
+    }
     return (
       <div className="App">
         <h1>hello i am a react app</h1>
@@ -37,7 +43,7 @@ class App extends Component {
         {/* this refers to the class // no parenthese or else it executes immediatly */}
         {/* arrow function for on click */}
         {/* bind Reccomended like in person 0 */}
-        <button onClick={()=>this.switchPersonHandeler('Not Jason')}>Switch Name</button>
+        <button style={style} onClick={()=>this.switchPersonHandeler('Not Jason')}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>

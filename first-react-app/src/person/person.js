@@ -5,7 +5,7 @@ import React from 'react';
 
 // ES6 Arrow function is Reccomended
 const person = () =>{
-  return <p></p>
+  return <p>I am a react person and i am {Math.floor(Math.random()*30)} years old</p>
 }
 
 export default person;

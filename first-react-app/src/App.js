@@ -21,6 +21,13 @@ class App extends Component {
       {name: 'Not Alice', age: '24'}]
     })
   }
+  personChangedHandeler = (event) =>{
+    this.setState({persons:[
+      {name: "Not Jason", age:'22'},
+      {name: event.target.value, age: '223'},
+      {name: 'Not Alice', age: '24'}]
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -31,7 +38,7 @@ class App extends Component {
         {/* bind Reccomended like in person 0 */}
         <button onClick={()=>this.switchPersonHandeler('Not Jason')}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click ={this.switchPersonHandeler}></Person>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
       </div>
     );

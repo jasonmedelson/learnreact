@@ -12,11 +12,11 @@ class App extends Component {
       {name: "Alice", age: "24"}]
   }
   // Method, camelCase for eventhandler
-  switchNameHandeler = () =>{
+  switchPersonHandeler = (newName) =>{
     // Does not work
     // this.state.persons[0].name = 'Maximillian'
     this.setState({persons:[
-      {name:'Not Jason', age:'22'},
+      {name: newName, age:'22'},
       {name: 'Stacy', age: '223'},
       {name: 'Not Alice', age: '24'}]
     })
@@ -27,10 +27,12 @@ class App extends Component {
         <h1>hello i am a react app</h1>
         <p>This is really working!</p>
         {/* this refers to the class // no parenthese or else it executes immediatly */}
-        <button onClick={this.switchNameHandeler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>Hello</Person>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}></Person>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>Hi</Person>
+        {/* arrow function for on click */}
+        {/* bind Reccomended like in person 0 */}
+        <button onClick={()=>this.switchPersonHandeler('Not Jason')}>Switch Name</button>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click ={this.switchPersonHandeler}></Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
       </div>
     );
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null,'hello i am a react app'))

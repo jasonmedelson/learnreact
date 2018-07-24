@@ -1,8 +1,11 @@
 import React from 'react';
-import './Person.css'
+import './Person.css';
+import Radium from 'radium';
 // function person(){
 //   return anything;
 // }
+
+
 
 // ES6 Arrow function is Reccomended
 // const person = () =>{
@@ -10,8 +13,14 @@ import './Person.css'
 // }
 
 const person = (props) =>{
+  const style = {
+    '@media (min-width: 500px)':{
+      width:'450px'
+    }
+  }
+
   return (
-    <div className = 'Person'>
+    <div className = 'Person' style={style}>
       <p onClick={props.click}>I'm {props.name} and i am {props.age} years old</p>
       <p>{props.children}</p>
       {/* onChange updates name value, value shows original value of name */}
@@ -19,5 +28,5 @@ const person = (props) =>{
     </div>
   )
 }
-
-export default person;
+// for media style root is needed
+export default Radium(person);

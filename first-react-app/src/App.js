@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import './Person/Person.css';
 import Person from './Person/Person.js';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   //  in Component you can define state
@@ -57,6 +57,7 @@ class App extends Component {
       border: '1px solid blue',
       cursor: 'pointer',
       backgroundColor: 'green',
+      //radium used for hover, hover must be wrapped with ''
       ':hover' : {
         backgroundColor: 'blue',
         color: 'white',
@@ -93,16 +94,19 @@ class App extends Component {
       classes.push('bold');
     }
     return (
-      <div className="App">
-        <h1>hello i am a react app</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        {/* this refers to the class // no parenthese or else it executes immediatly */}
-        {/* arrow function for on click */}
-        {/* bind Reccomended like in person 0 */}
-        <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
-        {/* after ? is for true, after colon is for false */}
-        {persons}
-      </div>
+      //StyleRoot needed for media queries
+      <StyleRoot>
+        <div className="App">
+          <h1>hello i am a react app</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          {/* this refers to the class // no parenthese or else it executes immediatly */}
+          {/* arrow function for on click */}
+          {/* bind Reccomended like in person 0 */}
+          <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
+          {/* after ? is for true, after colon is for false */}
+          {persons}
+        </div>
+      </StyleRoot>
     );
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null,'hello i am a react app'))
   }

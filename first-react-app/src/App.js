@@ -43,6 +43,17 @@ class App extends Component {
       padding: '8px',
       border: '1px solid blue'
     }
+    let persons = null;
+    if(this.state.showPersons){
+      persons = (
+        <div>
+          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
+          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1>hello i am a react app</h1>
@@ -50,15 +61,9 @@ class App extends Component {
         {/* this refers to the class // no parenthese or else it executes immediatly */}
         {/* arrow function for on click */}
         {/* bind Reccomended like in person 0 */}
-        <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
+        <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
         {/* after ? is for true, after colon is for false */}
-        {this.state.showPersons ?
-          <div>
-            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
-            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
-            <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
-          </div>
-        : null}
+        {persons}
       </div>
     );
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null,'hello i am a react app'))

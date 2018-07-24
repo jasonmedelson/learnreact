@@ -20,6 +20,12 @@ class App extends Component {
     this.setState({showPersons: !doesShow}); // sets showPersons to opposite of current state
   }
   // Method, camelCase for eventhandler
+  deletePersonHandler = (personsIndex) =>{
+    const persons = this.state.persons;
+    persons.splice(personsIndex,1);
+    this.setState({persons:persons});
+  }
+
   switchPersonHandeler = (newName) =>{
     // Does not work
     // this.state.persons[0].name = 'Maximillian'
@@ -47,11 +53,18 @@ class App extends Component {
     if(this.state.showPersons){
       persons = (
         <div>
-          <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
+          {/* map is basically a loop for js object/ creates index */}
+          {this.state.persons.map((person, index) =>{
+            return <Person
+              name={person.name}
+              age={person.age}
+              click={() => this.deletePersonHandler(index)} ></Person>
+          })}
+          {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
+          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person> */}
         </div>
-      )
+      );
     }
 
     return (

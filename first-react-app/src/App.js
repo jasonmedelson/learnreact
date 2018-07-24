@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import './Person/Person.css'
+import './Person/Person.css';
 import Person from './Person/Person.js';
+import Radium from 'radium';
 
 class App extends Component {
   //  in Component you can define state
@@ -55,8 +56,12 @@ class App extends Component {
       padding: '8px',
       border: '1px solid blue',
       cursor: 'pointer',
-      backgroundColor: 'green'
-    }
+      backgroundColor: 'green',
+      ':hover' : {
+        backgroundColor: 'blue',
+        color: 'white',
+      }
+    };
     let persons = null;
     if(this.state.showPersons){
       persons = (
@@ -103,4 +108,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);

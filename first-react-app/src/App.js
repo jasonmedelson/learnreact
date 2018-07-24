@@ -37,12 +37,15 @@ class App extends Component {
       {name: 'Not Alice', age: '24'}]
     })
   }
-  personChangedHandeler = (event) =>{
-    this.setState({persons:[
-      {name: "Not Jason", age:'22'},
-      {name: event.target.value, age: '223'},
-      {name: 'Not Alice', age: '24'}]
-    })
+  personChangedHandeler = (event, index) =>{
+    const person = {
+      ...this.state.persons[index] //spread operator
+    }
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[index] = person
+    this.setState(
+      {persons: persons    })
   }
   render() {
     const style = {
@@ -63,11 +66,12 @@ class App extends Component {
               age={person.age}
               click={() => this.deletePersonHandler(index)}
               key={index} // should always be unique
+              changed={(event) => this.personChangedHandeler(event, index)}
               ></Person>
           })}
-          {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
-          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person> */}
+          {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person> */}
+          {/* <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person> */}
+          {/* <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person> */}
         </div>
       );
     }

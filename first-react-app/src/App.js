@@ -101,7 +101,7 @@ class App extends Component {
           {/* this refers to the class // no parenthese or else it executes immediatly */}
           {/* arrow function for on click */}
           {/* bind Reccomended like in person 0 */}
-          <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
+          <button onClick={this.togglePersonHandler}>Toggle Persons</button>
           {/* after ? is for true, after colon is for false */}
           {persons}
         </div>

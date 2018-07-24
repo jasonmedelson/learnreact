@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+.App button{
+  background-color: yellow;
+  font: 'inherit';
+  padding: '8px';
+  border: '1px solid blue';
+  cursor: 'pointer';
+}
+.App button:hover{
+  background-color: purple;
+  color: white;
+  
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

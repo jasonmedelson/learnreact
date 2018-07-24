@@ -10,7 +10,14 @@ class App extends Component {
     persons:[
       {name:'Jason', age:'22'},
       {name: "Stacy", age: "23"},
-      {name: "Alice", age: "24"}]
+      {name: "Alice", age: "24"}],
+    otherState :'other value',
+    showPersons:false,
+
+  }
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow}); // sets showPersons to opposite of current state
   }
   // Method, camelCase for eventhandler
   switchPersonHandeler = (newName) =>{
@@ -43,10 +50,15 @@ class App extends Component {
         {/* this refers to the class // no parenthese or else it executes immediatly */}
         {/* arrow function for on click */}
         {/* bind Reccomended like in person 0 */}
-        <button style={style} onClick={()=>this.switchPersonHandeler('Not Jason')}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
+        <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
+        {/* after ? is for true, after colon is for false */}
+        {this.state.showPersons ?
+          <div>
+            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
+            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>
+            <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person>
+          </div>
+        : null}
       </div>
     );
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null,'hello i am a react app'))

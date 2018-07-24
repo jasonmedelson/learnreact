@@ -4,6 +4,7 @@ import classes from './App.css';
 import otherClasses from './Person/Person.css';
 import Person from './Person/Person.js';
 import Radium, {StyleRoot} from 'radium';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary.js'
 
 class App extends Component {
   //  in Component you can define state

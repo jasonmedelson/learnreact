@@ -48,11 +48,14 @@ class App extends Component {
       {persons: persons    })
   }
   render() {
+    // no psudeo selecto like :hover
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
       padding: '8px',
-      border: '1px solid blue'
+      border: '1px solid blue',
+      cursor: 'pointer',
+      backgroundColor: 'green'
     }
     let persons = null;
     if(this.state.showPersons){
@@ -69,17 +72,25 @@ class App extends Component {
               changed={(event) => this.personChangedHandeler(event, index)}
               ></Person>
           })}
+
           {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person> */}
           {/* <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person> */}
           {/* <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person> */}
         </div>
       );
+      style.backgroundColor = 'red';
     }
-
+    let classes = []
+    if(this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if(this.state.persons.length <= 1){
+      classes.push('bold');
+    }
     return (
       <div className="App">
         <h1>hello i am a react app</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(' ')}>This is really working!</p>
         {/* this refers to the class // no parenthese or else it executes immediatly */}
         {/* arrow function for on click */}
         {/* bind Reccomended like in person 0 */}

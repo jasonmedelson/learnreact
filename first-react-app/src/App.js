@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import './Person/Person.css';
+import classes from './App.css';
+import otherClasses from './Person/Person.css';
 import Person from './Person/Person.js';
 import Radium, {StyleRoot} from 'radium';
 
@@ -51,12 +51,11 @@ class App extends Component {
   render() {
     // no psudeo selecto like :hover
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
       padding: '8px',
       border: '1px solid blue',
       cursor: 'pointer',
-      backgroundColor: 'green',
       //radium used for hover, hover must be wrapped with ''
       ':hover' : {
         backgroundColor: 'blue',
@@ -86,19 +85,19 @@ class App extends Component {
       );
       style.backgroundColor = 'red';
     }
-    let classes = []
+    let assigned = []
     if(this.state.persons.length <= 2){
-      classes.push('red');
+      assigned.push('red');
     }
     if(this.state.persons.length <= 1){
-      classes.push('bold');
+      assigned.push('bold');
     }
     return (
       //StyleRoot needed for media queries
       <StyleRoot>
-        <div className="App">
+        <div className={classes.App}>
           <h1>hello i am a react app</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
+          <p className={assigned.join(' ')}>This is really working!</p>
           {/* this refers to the class // no parenthese or else it executes immediatly */}
           {/* arrow function for on click */}
           {/* bind Reccomended like in person 0 */}

@@ -55,12 +55,15 @@ class App extends Component {
     if(this.state.showPersons){
       persons = (
         <div>
+          {/* key is looked for when mapping */}
           {/* map is basically a loop for js object/ creates index */}
           {this.state.persons.map((person, index) =>{
             return <Person
               name={person.name}
               age={person.age}
-              click={() => this.deletePersonHandler(index)} ></Person>
+              click={() => this.deletePersonHandler(index)}
+              key={index} // should always be unique
+              ></Person>
           })}
           {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person>

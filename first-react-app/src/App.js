@@ -21,7 +21,9 @@ class App extends Component {
   }
   // Method, camelCase for eventhandler
   deletePersonHandler = (personsIndex) =>{
-    const persons = this.state.persons;
+    //slice creates copy, when empty is full copy
+    //const persons = this.state.persons.slice();
+    const persons = [...this.state.persons] //identical to slice , either works
     persons.splice(personsIndex,1);
     this.setState({persons:persons});
   }

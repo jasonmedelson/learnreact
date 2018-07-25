@@ -12,8 +12,20 @@ import Person from './Person/Person.js';
 // }
 // );
 
+
 class Persons extends Component{
+  constructor(props){
+    super(props);
+    console.log('App.js',props)
+  }
+  componentWillMount(){
+    console.log('persons Inside componentWillMount')
+  }
+  componentDidMount(){
+    console.log('persons Inside componentDidMount')
+  }
   render(){
+    console.log('persons.js Inside render')
     return this.props.persons.map((person,index) =>{
       return <Person
           name={person.name}

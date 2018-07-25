@@ -29,7 +29,20 @@ import Radium from 'radium';
 //   )
 // }
 class Person extends Component{
+  constructor(props){
+    super(props);
+    console.log('person.js',props)
+  }
+
+  componentWillMount(){
+    console.log('person.js Inside componentWillMount')
+  }
+
+  componentDidMount(){
+    console.log('person.js Inside componentDidMount')
+  }
   render(){
+    console.log('person.js Inside render')
     return (
       <div className = {classes.Person} >
         <p onClick={this.props.click}>I'm {this.props.name} and i am {this.props.age} years old</p>

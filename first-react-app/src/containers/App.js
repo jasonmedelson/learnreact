@@ -9,16 +9,40 @@ import Radium, {StyleRoot} from 'radium';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
 
 class App extends Component {
-  //  in Component you can define state
-  state = {
-    persons:[
-      {name:'Jason', age:'22'},
-      {name: "Stacy", age: "23"},
-      {name: "Alice", age: "24"}],
-    otherState :'other value',
-    showPersons:false,
+  //regular state prefered
+  //constructor is old way to do it
+  constructor(props){
+    super(props);
+    console.log('App.js',props)
+    this.state = {
+      persons:[
+        {name:'Jason', age:'22'},
+        {name: "Stacy", age: "23"},
+        {name: "Alice", age: "24"}],
+      otherState :'other value',
+      showPersons:false,
 
+    };
   }
+
+  componentWillMount(){
+    console.log('Inside componentWillMount')
+  }
+
+  componentDidMount(){
+    console.log('Inside componentDidMount')
+  }
+
+  //  in Component you can define state
+  // state = {
+  //   persons:[
+  //     {name:'Jason', age:'22'},
+  //     {name: "Stacy", age: "23"},
+  //     {name: "Alice", age: "24"}],
+  //   otherState :'other value',
+  //   showPersons:false,
+  //
+  // }
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow}); // sets showPersons to opposite of current state
@@ -52,6 +76,7 @@ class App extends Component {
       {persons: persons    })
   }
   render() {
+    console.log('app.js Inside render')
     // no psudeo selecto like :hover
     const style = {
       backgroundColor: 'green',

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import classes from './App.css';
-import otherClasses from './Person/Person.css';
-import Person from './Person/Person.js';
+import otherClasses from '../Components/Persons/Person/Person.css';
+import Person from '../Components/Persons/Person/Person.js';
+import Persons from '../Components/Persons/Persons.js';
+import Cockpit from '../Components/Cockpit/Cockpit.js'
 import Radium, {StyleRoot} from 'radium';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary.js'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
 
 class App extends Component {
   //  in Component you can define state
@@ -67,9 +69,14 @@ class App extends Component {
     if(this.state.showPersons){
       persons = (
         <div>
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHangler}/>
+
           {/* key is looked for when mapping */}
           {/* map is basically a loop for js object/ creates index */}
-          {this.state.persons.map((person, index) =>{
+          {/* {this.state.persons.map((person, index) =>{
             return <Person
               name={person.name}
               age={person.age}
@@ -77,36 +84,41 @@ class App extends Component {
               key={index} // should always be unique
               changed={(event) => this.personChangedHandeler(event, index)}
               ></Person>
-          })}
+          })} */}
 
           {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click ={this.switchPersonHandeler.bind(this, 'Max')}>Hello</Person> */}
           {/* <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed ={this.personChangedHandeler}></Person> */}
           {/* <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click ={this.switchPersonHandeler}>Hi</Person> */}
         </div>
       );
-      style.backgroundColor = 'red';
+      // style.backgroundColor = 'red';
     }
-    let assigned = []
-    if(this.state.persons.length <= 2){
-      assigned.push('red');
-    }
-    if(this.state.persons.length <= 1){
-      assigned.push('bold');
-    }
+
     return (
-      //StyleRoot needed for media queries
       <StyleRoot>
         <div className={classes.App}>
-          <h1>hello i am a react app</h1>
-          <p className={assigned.join(' ')}>This is really working!</p>
-          {/* this refers to the class // no parenthese or else it executes immediatly */}
-          {/* arrow function for on click */}
-          {/* bind Reccomended like in person 0 */}
-          <button onClick={this.togglePersonHandler}>Toggle Persons</button>
-          {/* after ? is for true, after colon is for false */}
+          <Cockpit
+            showPersons = {this.state.showPersons}
+            persons={this.state.persons}
+            toggle={this.togglePersonHandler}
+          />
           {persons}
         </div>
       </StyleRoot>
+
+      //StyleRoot needed for media queries
+      // <StyleRoot>
+      //   <div className={classes.App}>
+      //     <h1>hello i am a react app</h1>
+      //     <p className={otherClasses.red.bold}>This is really working!</p>
+      //     {/* this refers to the class // no parenthese or else it executes immediatly */}
+      //     {/* arrow function for on click */}
+      //     {/* bind Reccomended like in person 0 */}
+      //     <button onClick={this.togglePersonHandler}>Toggle Persons</button>
+      //     {/* after ? is for true, after colon is for false */}
+      //     {persons}
+      //   </div>
+      // </StyleRoot>
     );
     // return React.createElement('div',{className: 'App'},React.createElement('h1',null,'hello i am a react app'))
   }

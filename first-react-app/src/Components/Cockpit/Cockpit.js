@@ -17,7 +17,7 @@ const cockpit = (props) => {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>hello i am a react app</h1>
+      <h1>{props.appTitle}</h1>
       <p className={assigned.join(" ")}>This is really working!</p>
       {/* this refers to the class // no parenthese or else it executes immediatly */}
       {/* arrow function for on click */}

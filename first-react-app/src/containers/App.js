@@ -4,9 +4,10 @@ import classes from './App.css';
 import otherClasses from '../Components/Persons/Person/Person.css';
 import Person from '../Components/Persons/Person/Person.js';
 import Persons from '../Components/Persons/Persons.js';
-import Cockpit from '../Components/Cockpit/Cockpit.js'
+import Cockpit from '../Components/Cockpit/Cockpit.js';
 import Radium, {StyleRoot} from 'radium';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js';
+import WithClass from '../hoc/WithClass.js';
 
 class App extends Component {
   //regular state prefered
@@ -133,8 +134,9 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className={classes.App}>
+      // <StyleRoot>
+      //   <div className={classes.App}>
+        <WithClass classes={classes.App}>
           <button onClick={() => this.setState({showPersons:true})}>showPersons</button>
           <Cockpit
             appTitle={this.props.title}
@@ -143,8 +145,9 @@ class App extends Component {
             toggle={this.togglePersonHandler}
           />
           {persons}
-        </div>
-      </StyleRoot>
+        </WithClass>
+      //   </div>
+      // </StyleRoot>
 
       //StyleRoot needed for media queries
       // <StyleRoot>

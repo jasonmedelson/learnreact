@@ -33,6 +33,19 @@ class App extends Component {
     console.log('Inside componentDidMount')
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    console.log('app.js shouldComponentUpdate');
+    return nextState.persons !== this.state.persons ||
+      nextState.showPersons !== this.state.showPersons;
+      // {PureComponent will handle this automatically}
+  }
+  componentWillUpdate(nextProps,nextState){
+    console.log('app.js componentWillUpdate')
+  }
+  componentDidUpdate(){
+    console.log('app.js componentDidUpdate')
+  }
+
   //  in Component you can define state
   // state = {
   //   persons:[
@@ -122,6 +135,7 @@ class App extends Component {
     return (
       <StyleRoot>
         <div className={classes.App}>
+          <button onClick={() => this.setState({showPersons:true})}>showPersons</button>
           <Cockpit
             appTitle={this.props.title}
             showPersons = {this.state.showPersons}

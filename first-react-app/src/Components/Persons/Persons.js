@@ -29,7 +29,10 @@ class Persons extends Component{
   }
   shouldComponentUpdate(nextProps, nextState){
     console.log('persons shouldComponentUpdate');
-    return nextProps.persons !== this.props.persons;
+    return nextProps.persons !== this.props.persons ||
+      nextProps.changed !== this.props.changed ||
+      nextProps.clicked !== this.props.clicked;
+    // return true;
   }
   componentWillUpdate(nextProps,nextState){
     console.log('persons componentWillUpdate')

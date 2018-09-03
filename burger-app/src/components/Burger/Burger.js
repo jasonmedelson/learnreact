@@ -9,16 +9,16 @@ const burger = (props) =>{
     return[...Array(props.ingredients[igKey])].map((_,i) =>{
       return <BurgerIngredient key ={igKey + i} type={igKey}/>
     });
-  }).reduce((arr, el)=>{
-    return arr.concat(el)
+  }).reduce((arr, elements)=>{ //reduce flattens the array of arrays to just the parent aray
+    return arr.concat(elements)
   },[]);
   if(transformedIngredients.length === 0){
-    transformedIngredients=<p>Please Start Adding Ingredients</p>
+    transformedIngredients=<p>Please Start Adding Ingredients</p> //overwrites value if empty array
   }
   return(
     <div className={classes.Burger}>
       <BurgerIngredient type="bread-top"/>
-      {transformedIngredients}
+        {transformedIngredients}
       <BurgerIngredient type="bread-bottom"/>
     </div>
   )
